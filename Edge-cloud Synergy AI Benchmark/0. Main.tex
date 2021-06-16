@@ -1,0 +1,232 @@
+%\documentclass{report}
+\documentclass{book}
+%\documentclass[a4paper,12pt,times,numbered,print,index]{report}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
+\iffalse
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\nouppercase{\rightmark} (\nouppercase{\leftmark})}
+\chead{}
+\rhead{\thepage}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\renewcommand{\chaptermark}[1]{%
+\markboth{#1}{}}
+\fi
+
+\usepackage{mathtools}
+%\usepackage{balance}
+\usepackage{epsfig}
+%\usepackage[all]{xy}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{color}
+\usepackage{epstopdf}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{gantt}
+\usepackage{graphicx}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xspace}
+\usepackage{multirow}
+\usepackage{booktabs}
+
+\lstset{ %
+  %basicstyle=\scriptsize,           % the size of the fonts that are used for the code
+  breakatwhitespace=false,          % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                  % sets automatic line breaking
+  %commentstyle=\color{mygreen},    % comment style
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  %frame=single,                    % adds a frame around the code
+  keepspaces=true,                  % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},        % keyword style
+  language=C,                       % the language of the code
+  morekeywords={},                  % if you want to add more keywords to the set
+  numbers=none,                     % where to put the line-numbers; possible values are (none, left, right)
+  %numbersep=5pt,                   % how far the line-numbers are from the code
+  %numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  %rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                 % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,           % underline spaces within strings only
+  showtabs=false,                   % show tabs within strings adding particular underscores
+  %stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  %stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                        % sets default tabsize to 2 spaces
+  %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=red,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+
+\renewcommand\thesection{%
+  \ifnum\value{section}<1{\thechapter.\arabic{section}}%
+  \else{\thechapter.\arabic{section}}\fi}
+
+\renewcommand\thesubsection{%
+  \ifnum\value{subsection}<1{\thechapter.\arabic{subsection}}%
+  \else{\thechapter.\arabic{subsection}}\fi}
+
+\newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\\\}
+\newcommand{\mysubparagraph}[1]{\subparagraph{#1}\mbox{}\\\\}
+
+
+\newcommand{\toask}[1]{\textcolor{red}{(Q): #1}}
+\newcommand{\todo}[1]{\textcolor{red}{(ToDo): #1}}
+\newcommand{\tocite}{\textcolor{blue}{[citation]}}
+\newcommand{\rpm}{\raisebox{.2ex}{$\scriptstyle\pm$}}
+
+\newcommand{\dc}{\textcolor{red}{DC:}\textcolor{red}}
+\newcommand{\mm}{\textcolor{blue}{}\textcolor{blue}}
+\newcommand{\mc}{\textcolor{green}{}\textcolor{green}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\let\LaTeXStandardTableOfContents\tableofcontents
+
+\renewcommand{\tableofcontents}{%
+\begingroup%
+\renewcommand{\bfseries}{\relax}%
+\LaTeXStandardTableOfContents%
+\endgroup%
+}%
+
+\newcommand{\ignore}[1]{{}}
+
+\begin{document}
+
+
+\begin{titlepage}
+
+\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+%\HRule \\[0.4cm]
+%{ \huge \bfseries Interaction between Artificial Intelligence and Computer Architecture}\\[0.4cm] % Title of your document
+%\HRule \\[1.5cm]
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Edge-cloud Synergy AI Benchmark}\\[0.4cm] % Title of your document
+%{ \huge \bfseries Leveraging Artificial Intelligence Algorithms \\ to Design Hardware Prediction Mechanisms}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+\textsc{\huge \textbf{STANDARD SPECIFICATION}}\\[1.5cm]
+
+\textsc{\Large \textbf{DRAFT 0.1 \\[0.07cm] KubeEdge AI SIG \\[0.24cm] Sedna}}\\[1.5cm]
+
+%----------------------------------------------------------------------------------------
+%	AUTHOR & ADVISOR(S) SECTION
+%----------------------------------------------------------------------------------------
+
+\ignore{
+\vspace{0.8cm}
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\Large \emph{Author:}\\[0.1cm]
+\Large NAME \\
+EMAIl
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\Large \emph{Companys:} \\[0.1cm]
+\Large Company1 \\
+email1 \\[0.1cm]
+\end{flushright}
+\vspace{-1.47cm}
+\end{minipage}\\[3cm]
+}
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+%\begin{minipage}{0.45\textwidth}
+%\begin{flushleft}
+%    \includegraphics[scale=0.08]{Figures/Cover/bsc.png}%\\[1cm] % Include a department/company logo - this will require the graphicx package
+%\end{flushleft}
+%\end{minipage}
+%~
+%\begin{minipage}{0.45\textwidth}
+%\begin{flushright}
+%    \includegraphics[scale=0.25]{Figures/Cover/upc.png}%\\[1cm] % Include a department/company logo - this will require the graphicx package
+%\end{flushright}
+%\end{minipage}
+
+\vspace{1.5cm}
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+%\onehalfspacing
+%\setlength{\parskip}{0.5cm plus4mm minus3mm}
+
+\tableofcontents
+%\listoftables
+%\listoffigures
+
+%\clearpage
+
+%\thispagestyle{plain}
+
+\chapter{Introduction}
+\label{chap:intro}
+\input{1. introduction}
+
+\chapter{Background}
+\label{chap:related}
+\input{2. background}
+
+\chapter{Methodology}
+\label{chap:methodology}
+\input{3. methodology}
+
+\chapter{Benchmark Design}
+\label{chap:work_plan}
+\input{4. benchmarkDesign}
+
+
+
+\bibliographystyle{abbrv}
+%\balance
+\bibliography{ref}
+
+\end{document}
+
