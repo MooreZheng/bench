@@ -1,4 +1,4 @@
 # Edge-cloud Synergy AI Benchmark
 Edge computing emerges as a promising technical framework to overcome the challenges in cloud computing. In this AI era, AI applications are the most critical types of application on the edge. Edge-cloud Synergy AI techniques are widely used to augment device, edge and cloud intelligence, and they are most demanding in terms of computing power, data storage, and network. 
 
-However, Edge-cloud Synergy AI is in the initial stage and does not have 1) a comprehensive evaluation standard for Edge-cloud Synergy AI scenarios; 2) with an end-to-end testbed for three-layer on edge cloud. Therefore, a comprehensive end-to-end Edge-cloud Synergy AI benchmark suite is needed to measure and optimize the systems and applications. This project is to establish 
+However, Edge-cloud Synergy AI is in the initial stage and does not have 1) a comprehensive evaluation standard for Edge-cloud Synergy AI scenarios; 2) with an end-to-end testbed for three-layer on edge cloud. Therefore, this project is to establish a comprehensive end-to-end Edge-cloud Synergy AI benchmark suite to measure and optimize the systems and applications.
