@@ -1,9 +1,27 @@
 \subsection{Learning Scheme}
 
-\subsubsection{Common}
-\begin{equation} \label{equ:ed} 
-\text{[End-to-end Delay] including data preprocess, feature enginneering, model inference etc.} 
-\end{equation}
+
+\begin{table}[h]
+\caption{Common Metrics.} 
+\label{tab:common}
+\begin{tabular}{|l|l|p{3cm}|p{4cm}|p{4cm}|}
+\hline
+Metric                 & Type      & Computation & Description                                                                & Reference \\ \hline
+End-to-end Delay
+& AI System 
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:ed} 
+    T_{start} - T_{end}
+    \end{equation}
+}
+& Time needed by data preprocess, feature enginneering, model inference etc. 
+&           
+\\ \hline
+
+\end{tabular}
+\end{table}
+
 
 \noindent \textbf{Coke Quality Prediction}
 \begin{itemize}
@@ -26,33 +44,7 @@
 
 \subsubsection{Federated Learning}
 
-\textbf{Common}
-\begin{equation}
-\text{[Accuracy on client] } \label{equ:aoc} 
-acc_{\text{client}} = (TP_{\text{client}} + TN_{\text{client}}) / (P_{\text{client}} + N_{\text{client}})    
-\end{equation}
-
-\begin{equation} \text{[Average of accuracy on clients] } \label{equ:aoaoc} 
-Avg(acc_{\text{client}}) = \sum acc_{\text{client}} / N
-\end{equation}
-%Li, Tian, et al. “Fair Resource Allocation in Federated Learning.” ICLR 2020 : Eighth International Conference on Learning Representations, 2020.
-
-\begin{equation} \label{equ:voaoc} 
-\text{[Variance of accuracy on clients] }
-Var(acc_{\text{client}}) = \sum (acc_{\text{client}}^2 - avg(acc_{\text{client}})) / N
-\end{equation}
-%Li, Tian, et al. “Fair Resource Allocation in Federated Learning.” ICLR 2020 : Eighth International Conference on Learning Representations, 2020.
-
-\begin{equation} \label{equ:aos} 
-\text{[Accuracy on server] }
-acc_{\text{server}} = (TP_{\text{server}} + TN_{\text{server}}) / (P_{\text{server}} + N_{\text{server}} )
-\end{equation}
-
-\begin{equation} \label{equ:cv} 
-\text{[Communication volume] }
-vol_{\text{comm}} = \sum_{\text{communication round}} \text{uploaded resource size}
-\end{equation}
-%McMahan, H.Brendan, et al. “Communication-Efficient Learning of Deep Networks from Decentralized Data.” Artificial Intelligence and Statistics, 2017, pp. 1273–1282.
+The metrics are shown in Table~\ref{tab:fl}.
 
 \noindent \textbf{Thermal Comfort Prediction}
 \begin{itemize}
@@ -66,60 +58,188 @@ vol_{\text{comm}} = \sum_{\text{communication round}} \text{uploaded resource si
     \item Constaint: Metric \ref{equ:cv}
 \end{itemize}
 
+\begin{table}[h]
+\caption{Federated Learning Metrics.} 
+\label{tab:fl}
+\begin{tabular}{|p{3cm}|l|p{6cm}|p{3cm}|p{1.5cm}|}
+
+\hline
+Metric                 & Type      & Computation & Description                                                                & Reference \\ \hline
+Accuracy on client
+& AI 
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:aoc} 
+    \begin{split}
+& acc_{\text{client}} = (TP_{\text{client}} 
+ / (P_{\text{client}} + N_{\text{client}})
+    \end{split} 
+    \end{equation} 
+}
+& accuracy on one client 
+& \cite{DBLP:conf/iclr/LiSBS20}       
+\\ \hline
+
+Average of accuracy on clients
+& AI
+&
+\parbox{3cm}{
+    \begin{equation} \label{equ:aoaoc} 
+    Avg(acc_{\text{client}}) = \sum acc_{\text{client}} / N
+    \end{equation}
+}
+& average accuracy on one client 
+& \cite{DBLP:conf/iclr/LiSBS20}       
+\\ \hline
+
+Variance of accuracy on clients
+& AI
+&
+\parbox{3cm}{
+    \begin{equation} \label{equ:voaoc} 
+    \begin{split}
+    Var(acc_{\text{client}}) =
+    & \sum (acc_{\text{client}}^2 - \\ 
+    & avg(acc_{\text{client}})) / N
+    \end{split}
+    \end{equation}
+}
+& Variance accuracy on one client 
+& \cite{DBLP:conf/iclr/LiSBS20}       
+\\ \hline
+
+Accuracy on server
+& AI
+&
+\parbox{3cm}{
+    \begin{equation} \label{equ:aos} 
+    \begin{split}
+acc_{\text{server}} = 
+& (TP_{\text{server}} + TN_{\text{server}}) / \\
+& (P_{\text{server}} + N_{\text{server}} )
+    \end{split}
+    \end{equation}
+}
+& 
+Accuracy on server
+& \cite{DBLP:conf/aistats/McMahanMRHA17}
+\\ \hline
+
+Communication volume
+& AI System
+&
+\parbox{3cm}{
+    \begin{equation} \label{equ:cv}  
+    \begin{split}
+& vol_{\text{comm}} = 
+ \sum_{\text{communication round}} 
+\text{uploaded} \\
+& \text{resource size}
+    \end{split}
+    \end{equation}
+}
+& 
+Communication volume
+& \cite{DBLP:conf/aistats/McMahanMRHA17}
+\\ \hline
+
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\caption{Lifelong Learning Metrics.} 
+\label{tab:ll}
+\begin{tabular}{|p{2cm}|l|p{6cm}|p{3cm}|p{1.5cm}|}
+
+\hline
+Metric                 & Type      & Computation & Description                                                                & Reference 
+\\ \hline
+
+Average of Multi-task Accuracy
+& AI 
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:aoma} 
+    \begin{split}
+\text{Avg(Acc}_\text{task}) = \sum^N_{i \geq j} R_{i,j} / N
+    \end{split} 
+    \end{equation} 
+}
+& 
+& \cite{DBLP:journals/corr/abs-1810-13166,DBLP:conf/nips/Lopez-PazR17}       
+\\ \hline
+
+Average of Multi-task Backward Transfer
+& AI 
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:aombt} 
+    \begin{split}
+& \text{Avg(BWT}_\text{task}) \\
+& = \sum^{N}_{i=2}\sum^{i-1}_{j=1} (R_{i,j}-R_{j,j}) / N
+    \end{split} 
+    \end{equation} 
+}
+&  
+& \cite{DBLP:journals/corr/abs-1810-13166,DBLP:conf/nips/Lopez-PazR17}       
+\\ \hline
+
+
+Standard deviation of Multi-task Backward Transfer
+& AI 
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:sdombt} 
+    \begin{split}
+& \text{Std(BWT}_\text{task}) = \sigma(R_{i,j}-R_{j,j}), \\ 
+& \forall i \in [2, N], j \in [1, i-1]
+    \end{split} 
+    \end{equation} 
+}
+&  
+& \cite{DBLP:journals/corr/abs-1810-13166,DBLP:conf/nips/Lopez-PazR17}       
+\\ \hline
+
+
+Model Size Efficiency
+& AI System
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:mseff} 
+    \begin{split}
+& MSEff = min(1, \sum_{i=1}^N Mem(\theta_1) \\
+& / Mem(\theta_i) / N)
+    \end{split} 
+    \end{equation} 
+}
+& The memory size of model hi quantified in terms of parameters at each task i, Mem(i), should not grow too rapidly with respect to the size of the model that learned the first task, Mem(1). 
+& \cite{DBLP:journals/corr/abs-1810-13166,DBLP:conf/nips/Lopez-PazR17}       
+\\ \hline
+
+Model Size Efficiency
+& AI System
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:ssse} 
+    \begin{split}
+& SSSEff = 1 - min(1, 1/N * \sum_{i=1}^N \\
+& Mem(M_i) / Mem(D))
+    \end{split} 
+    \end{equation} 
+}
+&  
+& \cite{DBLP:journals/corr/abs-1810-13166,DBLP:conf/nips/Lopez-PazR17}       
+\\ \hline
+
+\end{tabular}
+\end{table}
+
+
+
 
 \subsubsection{Lifelong Learning}
 
-
-Given the train-test accuracy matrix $R \in \mathbb{R}^{N \times N}$, which contains in each entry $R_{i,j}$ the test classification accuracy of the model on task $t_j$ after observing the last sample from task $t_i$, Accuracy (A) considers the average accuracy for training set $Tr_i$ and test set $Te_j$ by considering the diagonal elements of $R$, as well as all elements below it. 
-
-\begin{equation} \label{equ:aoma} 
-\text{[Average of Multi-task Accuracy] }
-\text{Avg(Acc}_\text{task}) = \sum^N_{i \geq j} R_{i,j} / N
-\end{equation}
-
-%Lopez-Paz, D. and Ranzato, M. (2017). Gradient Episodic Memory for Continual Learning. ArXiv e-prints.
-
-%Díaz-Rodríguez, N., Lomonaco, V., Filliat, D., & Maltoni, D. (2018). Don't forget, there is more than forgetting: new metrics for Continual Learning. arXiv preprint arXiv:1810.13166.
-
-\begin{equation} \label{equ:aombt} 
-\text{[Average of Multi-task Backward Transfer] }
-\text{Avg(BWT}_\text{task}) = \sum^{N}_{i=2}\sum^{i-1}_{j=1}(R_{i,j}-R_{j,j}) / N
-\end{equation}
-
-%Lopez-Paz, D. and Ranzato, M. (2017). Gradient Episodic Memory for Continual Learning. ArXiv e-prints.
-
-%Díaz-Rodríguez, N., Lomonaco, V., Filliat, D., & Maltoni, D. (2018). Don't forget, there is more than forgetting: new metrics for Continual Learning. arXiv preprint arXiv:1810.13166.
-
-\begin{equation} \label{equ:aombt} 
-\text{[Standard deviation of Multi-task Backward Transfer] }
-\text{Std(BWT}_\text{task}) = \sigma(R_{i,j}-R_{j,j}), \forall i \in [2, N], j \in [1, i-1]
-\end{equation}
-
-The memory size of model hi quantified in terms of parameters at each task
-i, Mem(i), should not grow too rapidly with respect to the size of the model that learned the first task, Mem(1).
-
-\begin{equation} \label{equ:mseff} 
-\text{[Model Size Efficiency] }
-MSEff = min(1, \sum_{i=1}^N Mem(\theta_1) / Mem(\theta_i) / N)
-\end{equation}
-
-\begin{equation} \label{equ:ssse} 
-\text{[Samples Storage Size Efficiency] }
-SSSEff = 1 - min(1, 1/N * \sum_{i=1}^N Mem(M_i) / Mem(D))
-\end{equation}
-
-\textbf{Layer Metric.} Default: Training on cloud; inference on edge. To be developed. 
-
-\textbf{Module Metric.} Default: End-to-end. To be developed.  
-
-\textbf{AI System Metric} Default: algorithm. Not only algorithm, but also optimization, decision making, etc. 
-
-\textbf{Setting.} Fixed test dataset. 
-Train: validate: Test:
-
-1) For objective: (train + valid) (1+1 - 10+1), fixed test set 1=(0.2, 0.2, 0.2, 0.2, 0.2), return worst result; 
-
-2) For constraint: given test samples and threshold (coke $\geq$ point-wise 95\%), check the number of test samples that pass the threshold (UR) and averge inference time;
+The metrics are shown in Table~\ref{tab:ll}. Given the train-test accuracy matrix $R \in \mathbb{R}^{N \times N}$, which contains in each entry $R_{i,j}$ the test classification accuracy of the model on task $t_j$ after observing the last sample from task $t_i$, Accuracy (A) considers the average accuracy for training set $Tr_i$ and test set $Te_j$ by considering the diagonal elements of $R$, as well as all elements below it. 
 
 \vspace{0.2cm}
 \noindent \textbf{Defect Detection}
@@ -128,34 +248,124 @@ Train: validate: Test:
     \item Constaint: Metric \ref{equ:mseff}, \ref{equ:ssse}  
 \end{itemize}
 
+
+%\textbf{Layer Metric.} Default: Training on cloud; inference on edge. To be developed. 
+
+%\textbf{Module Metric.} Default: End-to-end. To be developed.  
+
+%\textbf{AI System Metric} Default: algorithm. Not only algorithm, but also optimization, decision making, etc. 
+
+%\textbf{Setting.} Fixed test dataset. Train: validate: Test:
+
+%1) For objective: (train + valid) (1+1 - 10+1), fixed test set 1=(0.2, 0.2, 0.2, 0.2, 0.2), return worst result; 
+
+%2) For constraint: given test samples and threshold (coke $\geq$ point-wise 95\%), check the number of test samples that pass the threshold (UR) and averge inference time;
+
+
+
+
+
+
+
+
 \subsubsection{Edge-cloud Synergy Inference}
-\begin{equation}
-\text{[compression ratio] } \label{equ:cr} 
-cr =  \text{edge model size}  /  \text{cloud model size}  
-\end{equation}
 
-\begin{equation}
-\text{[upper cloud ratio] } \label{equ:ucr} 
-ucr = \text{upload cloud data volume} /  \text{all data volume} 
-\end{equation}
+The metrics are shown in Table~\ref{tab:esi}.
 
-\begin{equation}
-\text{[calculation amount] } \label{equ:flops} 
+\begin{table}[h!]
+\caption{Edge-cloud Synergy Inference Metrics.} 
+\label{tab:esi}
+\begin{tabular}{|p{2cm}|l|p{6cm}|p{3cm}|p{1.5cm}|}
+
+\hline
+Metric                 & Type      & Computation & Description                                                                & Reference 
+\\ \hline
+
+Compression ratio
+& AI System
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:cr}
+    \begin{split}
+cr =  \text{edge model size}  /  \text{cloud model size}
+    \end{split} 
+    \end{equation} 
+}
+& 
+&      
+\\ \hline
+
+Upper cloud ratio
+& AI System
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:ucr}
+    \begin{split} 
+& ucr = \text{upload cloud data volume} /  \\
+& \text{all data volume} 
+    \end{split} 
+    \end{equation} 
+}
+& 
+&      
+\\ \hline
+
+Calculation amount
+& AI System
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:flops} 
+    \begin{split}
 FLOPs
-\end{equation}
+    \end{split} 
+    \end{equation} 
+}
+& 
+&      
+\\ \hline
 
-\begin{equation}
-\text{[throughput] } \label{equ:fps} 
+Throughput
+& AI System
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:fps} 
+    \begin{split}
 FPS =  \text{Frames per second} 
-\end{equation}
+    \end{split} 
+    \end{equation} 
+}
+& 
+&      
+\\ \hline
 
-\begin{equation}
-\text{[Model size] } \label{equ:mz} 
- \text{Model size (MB)} 
-\end{equation}
+Model size
+& AI System
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:mz} 
+    \begin{split}
+Model size (MB)
+    \end{split} 
+    \end{equation} 
+}
+& 
+&      
+\\ \hline
 
-\begin{equation}
-\text{[mean average  precision] } \label{equ:map} 
+Mean average precision
+& AI 
+& 
+\parbox{3cm}{
+    \begin{equation} \label{equ:map} 
+    \begin{split}
 mAP
-\end{equation}
+    \end{split} 
+    \end{equation} 
+}
+& 
+&      
+\\ \hline
+\end{tabular}
+\end{table}
+
 
