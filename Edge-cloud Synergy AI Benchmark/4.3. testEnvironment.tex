@@ -151,14 +151,14 @@ To be more specific, for coal, data of ratios for different types of coals and p
 %3) optimization samples: delay, result (feasible; cost reduction);
 
 \subsubsection{Re-identification}
-\textbf{Person Re-identification} Person ReID aims to match the same person in non-overlapping camera views. 
-
-(TODO: add metrics and more explanation on datasets)
+\textbf{Person Re-identification}
 
 \textbf{1. Architecture.}
 
-\textbf{2. Dataset and Related Settings.}
-We select 9 different datasets with significant variances in image amounts, identity numbers, scenes (indoor or outdoor), and the number of camera views. These properties lead to huge domain gaps among each other , simulating the statistical heterogeneity in reality. 
+\textbf{2. Dataset and Related Settings.} We select nine different datasets with significant variances in image amounts, identity numbers, scenes (indoor or outdoor), and the number of camera views. These properties lead to huge domain gaps among each other, simulating the statistical heterogeneity in reality \cite{zhuang2020fedreid}. These nine datasets are MSMT17 \cite{Wei2017Msmt}, DukeMTMC-reID \cite{zheng2017dukemtmc-reid}, 
+Market-1501 \cite{Zheng2015Market1501}, CUHK03-NP \cite{Li2014CUHK03}, PRID2011 \cite{prid2011}, CUHK01 \cite{li2012cuhk01}, VIPeR \cite{Gray2008ViewpointIP}, 3DPeS \cite{3dpes}, and iLIDS-VID \cite{iLIDS-VID}. 
+
+We can simulate two different architectures of federated learning with these datasets: edge-cloud architecture and device-edge-cloud architecture. Firstly, since each dataset is collected from multiple camera views, we can split each dataset by camera views. Each camera is defined as an individual client to directly communicate with the server to conduct the federated learning process. Under this scenario, keeping images in clients significantly reduces the risk of privacy leakage. However, this scenario exerts high requirements on the computation ability of cameras to train deep models, which makes practical deployment harder. Secondly, we can employ device-edge-cloud architecture, where clients are defined as edge servers. The edge servers construct datasets from multiple cameras and then collaboratively conduct federated learning with the central server. Under this scenario, each client contains one person ReID dataset.
 
 \textbf{3. Contextual Metrics.}
 
@@ -169,3 +169,5 @@ We select 9 different datasets with significant variances in image amounts, iden
 \textbf{6. Hardware.}
 
 \textbf{7. Supported Learning Scheme.}
+
+1) Federated Learning.
