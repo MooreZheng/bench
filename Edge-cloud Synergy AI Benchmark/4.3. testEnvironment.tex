@@ -6,11 +6,17 @@
 \subsubsection{Object Detection}
 \textbf{Helmet Detection:} 
 
-\textbf{1. Architecture.} Helmet-Off Detection system contains the cameras and AI edge nodes connected to the edge-cloud, which do not require equipment rooms. There is at least one edge node for each of the five sites C1, C2, C3, S1, and S2. Cameras in each site are all connected to the edge stations via WiFi under a star network topology. Different from edge nodes and the edge cloud, cameras do not have computation power and are merely used to collect data. The simulation will be conducted according to the above setting to better simulate the real-world helmet-detection applications on the edge cloud.
+\textbf{1. Architecture.} 
 
-\textbf{2. Dataset and Related Settings.} Among all the cameras, we take 49 cameras from all five sites as the training set. The rest 8 cameras are used as the test set, i.e., two cameras (S1-1, S1-2) from S1 and six cameras (S2-1, S2-2, S2-3, S2-4, S2-5, S2-6) from S2. That is, the ratio between the on-cloud training set and the on-edge test set is 9:1. 
+Helmet-Off Detection system contains the cameras and AI edge nodes connected to the edge-cloud, which do not require equipment rooms. There is at least one edge node for each of the five sites C1, C2, C3, S1, and S2. Cameras in each site are all connected to the edge stations via WiFi under a star network topology. Different from edge nodes and the edge cloud, cameras do not have computation power and are merely used to collect data. The simulation will be conducted according to the above setting to better simulate the real-world helmet-detection applications on the edge cloud.
 
-\textbf{3. Contextual Metrics.} In the current helmet detection task, we focus on the detection capability of the helmet-off object. Thus, we measure the Recall, Precision, and F1-score to determine the Helmet-off detection capability of the model. 
+\textbf{2. Dataset and Related Settings.} 
+
+Among all the cameras, we take 49 cameras from all five sites as the training set. The rest 8 cameras are used as the test set, i.e., two cameras (S1-1, S1-2) from S1 and six cameras (S2-1, S2-2, S2-3, S2-4, S2-5, S2-6) from S2. That is, the ratio between the on-cloud training set and the on-edge test set is 9:1. 
+
+\textbf{3. Contextual Metrics.} 
+
+In the current helmet detection task, we focus on the detection capability of the helmet-off object. Thus, we measure the Recall, Precision, and F1-score to determine the Helmet-off detection capability of the model. 
 
 \begin{equation} \label{equ:recall} 
 Recall = \frac{TP}{TP + FN}, 
@@ -26,29 +32,38 @@ where $TP$, $FN$ and $FP$ denote the number of true positive, false negative and
 $Precision$ is implied as to the measure of the correctly identified positive cases from all the predicted positive cases. Thus, this metric is useful when the costs of \textit{False Positives} are high. $Recall$ is the measure of the correctly identified positive cases from all the actual positive cases. This metric is important when the cost of \textit{False Negatives} is high. $F1-score$ is the harmonic mean of Precision and Recall and gives a better measure of the incorrectly classified cases than the Accuracy Metric.
 
 \textbf{4. Features.}
-Features are extracted with Yolo. 
+
+Helmet detection data are of unstructured data. Features are extracted with Yolov3. See base models below. 
 
 \textbf{5. Baselines and Hyperparameters.}
+
+We leverage two models, including the deeper model of  Darknet53-YOLOv3 and the shallower model of Resnet18-YOLOv3. 
 
 
 \textbf{6. Hardware.}
 
+Edge nodes are all equipped with a 1.6GHz CPU with 4GB RAM and 8TOPS @FP16 NPU with 8GB Memory. A public edge-cloud instance is adopted with a Pascal P100 GPU. 
+
 \textbf{7. Supported Learning Scheme.}
+
+Current the helmet detection scenario is supported by Edge-cloud synergy inference, and lifelong learning.
+
 
 
 \subsubsection{Classification}
-
-
-
 
 \textbf{Thermal Comfort Prediction:} 
 
 \textbf{1. Architecture.}
 
+There are 99 cities of 28 countries, each of which are equipped with an edge node. Edge nodes in each site are all connected to the cloud under a star network topology.
+
 \textbf{2. Dataset and Related Settings.}
+
 ASHRAE Thermal Comfort Database (ATC II) is used to predict occupants' feeling of comfort, cold or hot. Data cleaning is conducted to remove samples with empty entries on significant feature items.
 
 \textbf{3. Contextual Metrics.} 
+
 To capture the predictive capabilities of our approach, we use the following metrics: Accuracy for evaluation.
 \noindent
 \begin{equation*}
@@ -58,15 +73,21 @@ To capture the predictive capabilities of our approach, we use the following met
 \end{equation*}
 where $TP$ denotes the number of true positive and $N$ denotes the number of testing data. 
 
-\textbf{4. Features.} 
+\textbf{4. Features.}
+
 We categorize the data with the variables that can be used as raw features and the variables that can be used for prediction. For raw features, we have basic identifiers, e.g., age and sex. These are personalized data, yet it is easier to collect these data. There is information on the physical environment, which can be collected by building automation systems. In this paper, we conduct prediction on direct comfort metrics of thermal sensation and preference which are for the general thermal comfort process, while the unselected ones are for adaptive thermal comfort process and we leave the related investigation as future work. The important feature items include age, sex, taav, trav, velav, rh, et, set, tsens, pcc\_ag, day15\_ta, day06\_ta, and dayav\_et. 
 
 \textbf{5. Baselines and Hyperparameters.}
 
+The basic model is XGBoost.
+
 \textbf{6. Hardware.}
+
+A cloud instance is used to run the benchmark, which has 12 cores, each with 3.20GHz, and a total memory of 32G.
 
 \textbf{7. Supported Learning Scheme.}
 
+Thermal comfort supports the learning scheme of lifelong learning. 
  
 \vspace{0.2cm} \noindent
 \textbf{Defect Detection:}
@@ -92,7 +113,12 @@ where $TP$ denotes the number of true positive and $N$ denotes the number of tes
 
 \textbf{4. Features.}
 
+Defect detection data are of unstructured data. Features are extracted with CNN. See base models below.
+
 \textbf{5. Baselines and Hyperparameters.}
+
+The base model is CNN. 
+
 
 \textbf{6. Hardware.}
 
@@ -109,10 +135,14 @@ All our experiments are conducted in a private cloud with 16 cores of 2.6GHz CPU
 
 \textbf{1. Architecture.}
 
+One edge node connects to the cloud. 
+
 \textbf{2. Dataset and Related Settings.}
+
 Coke Production Dataset (CPD) is used to predict coke quality based on certain coal blending proportions. The dataset used in this study is collected from a factory for 6 months. With 108 samples of different coal blending combinations in total, the ratio between the training and testing is set as 8:2 and 22 samples are set as testing samples. In the training part for task forest, 25$\%$ of the training data are used for validation. 
 
 \textbf{3. Contextual Metrics.} 
+
 Predicting the continuous, scalar value of CSR is basically a regression problem, directly leading to our selection of the metrics of Mean Absolute Error (MAE) and Mean Squared Error (MSE). Also, the error rate metric is used to measure the relative bias of predictions. 
 To avoid moderate predictions, matching the prediction vectors with the ground-truth vectors will end up with better predictions.
 So to capture the trend tracking capability of the proposed approach, the Pearson Correlation Coefficient (PCCS), which is a common coefficient for measuring the covariance of two variables is used.
@@ -132,15 +162,20 @@ PCCS = \frac{1}{J} \sum^J_{j=1} \frac{\sum_{i=1}^{N_j} (\hat{y}^{j}_{i} - \hat{\
 where $J$ denotes the number of testing tasks; $N_j$ is the number of testing data on task $j$; $\hat{y}_n$ and $y_n$ are the estimation and the ground truth of the $n^\text{th}$ sample; $\hat{\mu}^j$ and $\mu^j$ are the mean of $\hat{y}_n$ and $y_n$, respectively.
 
 \textbf{4. Features.}
+
 To be more specific, for coal, data of ratios for different types of coals and properties for each type in the form of a 4-dimension vector showing values of Ash (Ad), Volatiles (Vdaf), Sulfur (St,d), and Caking Index (G) are available. By taking the ratio-weighted average value of each of the four properties, each coal blending sample is represented by a 4-dimension feature. For coke, data of Ad, Vdaf, Std, and G value for each sample, and the corresponding CSR value after coking the coals are available. The preprocessed 4-dimension feature for several coal blending combinations are used as input data, and the CSR value is used as corresponding labels. 
 
 \textbf{5. Baselines and Hyperparameters.}
 
+The base model could be of SVM, CNN, linear regression. 
+
 \textbf{6. Hardware.}
+
+A cloud instance is used to run the benchmark, which has 12 cores, each with 3.20GHz, and a total memory of 32G.
 
 \textbf{7. Supported Learning Scheme.}
 
-
+Coke prediction supports lifelong learning, multi-task learning. 
 
 
 
@@ -155,7 +190,9 @@ To be more specific, for coal, data of ratios for different types of coals and p
 
 \textbf{1. Architecture.}
 
-\textbf{2. Dataset and Related Settings.} We select nine different datasets with significant variances in image amounts, identity numbers, scenes (indoor or outdoor), and the number of camera views. These properties lead to huge domain gaps among each other, simulating the statistical heterogeneity in reality \cite{zhuang2020fedreid}. These nine datasets are MSMT17 \cite{Wei2017Msmt}, DukeMTMC-reID \cite{zheng2017dukemtmc-reid}, 
+\textbf{2. Dataset and Related Settings.} 
+
+We select nine different datasets with significant variances in image amounts, identity numbers, scenes (indoor or outdoor), and the number of camera views. These properties lead to huge domain gaps among each other, simulating the statistical heterogeneity in reality \cite{zhuang2020fedreid}. These nine datasets are MSMT17 \cite{Wei2017Msmt}, DukeMTMC-reID \cite{zheng2017dukemtmc-reid}, 
 Market-1501 \cite{Zheng2015Market1501}, CUHK03-NP \cite{Li2014CUHK03}, PRID2011 \cite{prid2011}, CUHK01 \cite{li2012cuhk01}, VIPeR \cite{Gray2008ViewpointIP}, 3DPeS \cite{3dpes}, and iLIDS-VID \cite{iLIDS-VID}. 
 
 We can simulate two different architectures of federated learning with these datasets: edge-cloud architecture and device-edge-cloud architecture. Firstly, since each dataset is collected from multiple camera views, we can split each dataset by camera views. Each camera is defined as an individual client to directly communicate with the server to conduct the federated learning process. Under this scenario, keeping images in clients significantly reduces the risk of privacy leakage. However, this scenario exerts high requirements on the computation ability of cameras to train deep models, which makes practical deployment harder. Secondly, we can employ device-edge-cloud architecture, where clients are defined as edge servers. The edge servers construct datasets from multiple cameras and then collaboratively conduct federated learning with the central server. Under this scenario, each client contains one person ReID dataset.
