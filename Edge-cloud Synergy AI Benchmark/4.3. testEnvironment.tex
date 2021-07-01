@@ -60,7 +60,9 @@ There are 99 cities of 28 countries, each of which are equipped with an edge nod
 
 \textbf{2. Dataset and Related Settings.}
 
-ASHRAE Thermal Comfort Database (ATC II) is used to predict occupants' feeling of comfort, cold or hot. Data cleaning is conducted to remove samples with empty entries on significant feature items.
+ASHRAE RP-884 database (ATC I) was originally collected to develop De Dear's adaptive comfort model. 25,248 observation sets from 160 buildings in 24 cities of nine countries in different times of a day covering seasons in the whole year, involving more than 70 variables~\cite{de97,arp18}.
+
+Recognizing the value of open-source research databases in advancing the art and science of HVAC, in 2014 the ASHRAE Global Thermal Comfort Database II (ATCII) project was launched under the leadership of University of California and The University of Sydney~\cite{licina18}. The exercise began with a systematic collection and harmonization of raw data from the last two decades of thermal comfort field studies around the world. The final database is comprised of field studies conducted between 1995 and 2015 from around the world, with contributors releasing their raw data to the project for wider dissemination to the thermal comfort research community. After the quality-assurance process, there was a total of 81,846 rows of data of paired subjective comfort votes and objective instrumental measurements of thermal comfort parameters. An additional 25,617 rows of data from the original ATCI database are included, bringing the total number of entries to 107,463.~\footnote{http://www.comfortdatabase.com/}
 
 \textbf{3. Contextual Metrics.} 
 
@@ -190,21 +192,36 @@ Coke prediction supports lifelong learning, multi-task learning.
 
 \textbf{1. Architecture.}
 
+We can simulate two different architectures of federated learning: edge-cloud architecture and device-edge-cloud architecture. 
+
+Firstly, since each dataset is collected from multiple camera views, we can split each dataset by camera views. Each camera is defined as an individual client to directly communicate with the server to conduct the federated learning process. Under this scenario, keeping images in clients significantly reduces the risk of privacy leakage. However, this scenario exerts high requirements on the computation ability of cameras to train deep models, which makes practical deployment harder. 
+
+Secondly, we can employ device-edge-cloud architecture, where clients are defined as edge servers. The edge servers construct datasets from multiple cameras and then collaboratively conduct federated learning with the central server. Under this scenario, each client contains one person ReID dataset.
+
 \textbf{2. Dataset and Related Settings.} 
 
-We select nine different datasets with significant variances in image amounts, identity numbers, scenes (indoor or outdoor), and the number of camera views. These properties lead to huge domain gaps among each other, simulating the statistical heterogeneity in reality \cite{zhuang2020fedreid}. These nine datasets are MSMT17 \cite{Wei2017Msmt}, DukeMTMC-reID \cite{zheng2017dukemtmc-reid}, 
+We select nine different datasets with significant variances in image amounts, identity numbers, scenes (indoor or outdoor), and the number of camera views. These properties lead to huge domain gaps among each other, simulating the statistical heterogeneity in reality. These nine datasets are MSMT17 \cite{Wei2017Msmt}, DukeMTMC-reID \cite{zheng2017dukemtmc-reid}, 
 Market-1501 \cite{Zheng2015Market1501}, CUHK03-NP \cite{Li2014CUHK03}, PRID2011 \cite{prid2011}, CUHK01 \cite{li2012cuhk01}, VIPeR \cite{Gray2008ViewpointIP}, 3DPeS \cite{3dpes}, and iLIDS-VID \cite{iLIDS-VID}. 
 
-We can simulate two different architectures of federated learning with these datasets: edge-cloud architecture and device-edge-cloud architecture. Firstly, since each dataset is collected from multiple camera views, we can split each dataset by camera views. Each camera is defined as an individual client to directly communicate with the server to conduct the federated learning process. Under this scenario, keeping images in clients significantly reduces the risk of privacy leakage. However, this scenario exerts high requirements on the computation ability of cameras to train deep models, which makes practical deployment harder. Secondly, we can employ device-edge-cloud architecture, where clients are defined as edge servers. The edge servers construct datasets from multiple cameras and then collaboratively conduct federated learning with the central server. Under this scenario, each client contains one person ReID dataset.
+
 
 \textbf{3. Contextual Metrics.}
 
+To be defined. 
+
 \textbf{4. Features.}
+
+To be defined. 
 
 \textbf{5. Baselines and Hyperparameters.}
 
+We can adopt implementation and reference related settings in \cite{zhuang2020fedreid, zhuang2021easyfl}.
+
 \textbf{6. Hardware.}
+
+To be defined.
+
 
 \textbf{7. Supported Learning Scheme.}
 
-1) Federated Learning.
+Federated Learning. 
