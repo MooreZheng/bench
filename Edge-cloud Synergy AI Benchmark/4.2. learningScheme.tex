@@ -23,40 +23,15 @@ End-to-end Delay
 \end{table}
 
 
-\noindent \textbf{Coke Quality Prediction}
-\begin{itemize}
-    \item Objective: - 
-    \item Constaint: Metric \ref{equ:ed}
-        \begin{itemize} 
-        \item 6ms per sample 
-        \item 100 samples in one batch, i.e., 0.6s per batch
-        \end{itemize}
-\end{itemize}
 
-\noindent \textbf{Defect Detection}
-\begin{itemize}
-    \item Objective: - 
-    \item Constaint: Metric \ref{equ:ed}
-        \begin{itemize} 
-        \item 500 fps, i.e., 500 images per second 
-        \end{itemize}
-\end{itemize}
+\subsubsection{Common Metrics}
+
 
 \subsubsection{Federated Learning}
 
 The metrics are shown in Table~\ref{tab:fl}.
 
-\noindent \textbf{Thermal Comfort Prediction}
-\begin{itemize}
-    \item Objective: Metric \ref{equ:aoaoc}, \ref{equ:voaoc}, 
-    \item Constaint: Metric \ref{equ:cv}
-\end{itemize}
 
-\noindent \textbf{Coke Quality Prediction}
-\begin{itemize}
-    \item Objective: Metric \ref{equ:aoaoc}, \ref{equ:voaoc}
-    \item Constaint: Metric \ref{equ:cv}
-\end{itemize}
 
 \begin{table}[h]
 \caption{Federated Learning Metrics.} 
@@ -250,12 +225,7 @@ Model Size Efficiency
 
 The metrics are shown in Table~\ref{tab:ll}. Given the train-test accuracy matrix $R \in \mathbb{R}^{N \times N}$, which contains in each entry $R_{i,j}$ the test classification accuracy of the model on task $t_j$ after observing the last sample from task $t_i$, Accuracy (A) considers the average accuracy for training set $Tr_i$ and test set $Te_j$ by considering the diagonal elements of $R$, as well as all elements below it. 
 
-\vspace{0.2cm}
-\noindent \textbf{Defect Detection}
-\begin{itemize}
-    \item Objective: Metric \ref{equ:aoma} \ref{equ:aombt} \ref{equ:aombt} 
-    \item Constaint: Metric \ref{equ:mseff}, \ref{equ:ssse}  
-\end{itemize}
+
 
 
 %\textbf{Layer Metric.} Default: Training on cloud; inference on edge. To be developed. 
